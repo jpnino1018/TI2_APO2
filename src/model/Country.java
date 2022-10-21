@@ -1,15 +1,17 @@
-public class City {
+package model;
+
+public class Country {
 
     private String id;
     private String name;
     private int population;
-    private String countryCode;
+    private String code;
 
-    public City(String id, String name, int population, String countryCode) {
+    public Country(String id, String name, int population, String code) {
         this.id = id;
         this.name = name;
         this.population = population;
-        this.countryCode = countryCode;
+        this.code = code;
     }
 
     public String getId() {
@@ -36,11 +38,11 @@ public class City {
         this.population = population;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 }
