@@ -45,4 +45,14 @@ public class Country {
     public void setCode(String code) {
         this.code = code;
     }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", population=" + population +
+                ", code='" + code + '\'' +
+                '}';
+    }
 }

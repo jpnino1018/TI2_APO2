@@ -16,37 +16,21 @@ public class Controller {
 
     public boolean addCity (String id, String name, double population, String countryCode) {
 
-        if (cities.add(new City(id,name,population,countryCode))) {
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return cities.add(new City(id,name,population,countryCode));
 
     }
 
     public boolean addCountry (String id, String name, double population, String code) {
 
-        if (countries.add(new Country(id,name,population,code))) {
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return countries.add(new Country(id,name,population,code));
 
     }
 
-    public boolean searchCountryCode (String countryCode) {
+    public boolean searchCountryCode (String countryId) {
 
-        for (Country searching : countries) {
+        for (int i = 0; i < countries.size(); i++) {
 
-            if (searching.getCode().equals(countryCode)) {
+            if (countries.get(i).getId().equals(countryId)) {
 
                 return true;
 
@@ -55,6 +39,114 @@ public class Controller {
         }
 
         return false;
+
+    }
+
+    public String searchCountryByName (String countryname) {
+
+        for (int i = 0; i < countries.size(); i++) {
+
+            if (countries.get(i).getName().equals(countryname)) {
+
+                return countries.get(i).toString();
+
+            }
+
+        }
+
+        return "The country dont exist";
+
+    }
+
+    public String searchCityByName (String cityname) {
+
+        for (int i = 0; i < cities.size(); i++) {
+
+            if (cities.get(i).getName().equals(cityname)) {
+
+                return cities.get(i).toString();
+
+            }
+
+        }
+
+        return "The country dont exist";
+
+    }
+
+    public String searchCountrybyPop (String cond, double pop) {
+
+        String msg = "";
+
+        if (cond.equals("<")) {
+
+            for (Country search : countries) {
+
+                if (search.getPopulation() < pop) {
+
+                    msg += "\n" + search.toString();
+
+                }
+
+            }
+
+        } else if (cond.equals(">")) {
+
+            for (Country search : countries) {
+
+                if (search.getPopulation() > pop) {
+
+                    msg += "\n" + search.toString();
+
+                }
+
+            }
+
+        }
+
+        if (msg.equals("")){
+            msg = "there's not a country with that population";
+        }
+
+        return msg;
+
+    }
+
+    public String searchCitybyPop (String cond, double pop) {
+
+        String msg = "";
+
+        if (cond.equals("<")) {
+
+            for (City search : cities) {
+
+                if (search.getPopulation() < pop) {
+
+                    msg += "\n" + search.toString();
+
+                }
+
+            }
+
+        } else if (cond.equals(">")) {
+
+            for (City search : cities) {
+
+                if (search.getPopulation() > pop) {
+
+                    msg += "\n" + search.toString();
+
+                }
+
+            }
+
+        }
+
+        if (msg.equals("")){
+            msg = "there's not a country with that population";
+        }
+
+        return msg;
 
     }
 

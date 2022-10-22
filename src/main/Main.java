@@ -54,6 +54,11 @@ public class Main {
 
                     }
 
+                    if (splitedComand.length < 4) {
+                        System.out.println("Command wrong written");
+                        break;
+                    }
+
                     if (splitedComand[0].equals("INSERT") && splitedComand[1].equals("INTO")) {
 
                         if (splitedComand[2].equalsIgnoreCase("countries(id,") && splitedComand[6].equals("VALUES")) {
@@ -67,34 +72,76 @@ public class Main {
                             try {
                                 double countrypop = Double.parseDouble(splitedComand[9].substring(0,(splitedComand[9].length()-1)));
                                 System.out.println("Contry population: " + countrypop);
-                                cn.addCountry(countryid, countryname, countrypop, countrycode);
+                                if(cn.addCountry(countryid, countryname, countrypop, countrycode)){
+                                    System.out.println("The country was added");
+                                } else {
+                                    System.out.println("The countru wans't added");
+                                }
 
                             } catch (NumberFormatException ex) {ex.printStackTrace();}
 
 
-                        } else if (splitedComand[2].equalsIgnoreCase("cities(id, name, countryID, population)") && splitedComand[3].equals("VALUES")){
+                        } else if (splitedComand[2].equalsIgnoreCase("cities(id,") && splitedComand[6].equals("VALUES")){
 
-                            String cityid = splitedComand[4].substring(2,41);
+                            String cityid = splitedComand[7].substring(2,38);
+                            System.out.println("City id: " + cityid);
+                            String cityname = splitedComand[8].substring(1,(splitedComand[8].length()-2));
+                            System.out.println("city name: " + cityname);
+                            String countrycode = splitedComand[9].substring(1,37);
+                            System.out.println("Contry code: " + countrycode);
+                            if(!cn.searchCountryCode(countrycode)) {
+                                System.out.println("that code dont exist"); break;}
+                            try {
+                                double citypop = Double.parseDouble(splitedComand[10].substring(0,(splitedComand[10].length()-1)));
+                                System.out.println("City population: " + citypop);
+                                if(cn.addCity(cityid, cityname, citypop, countrycode)) {
+                                    System.out.println("the city was added");
+                                } else {
+                                    System.out.println("the city wasn't added");
+                                }
+
+                            } catch (NumberFormatException ex) {ex.printStackTrace();}
 
                         }
 
-                    } else if (splitedComand[0].equalsIgnoreCase("SELECT*FROM")) {
+                    } else if (splitedComand[0].equals("SELECT") && splitedComand[1].equals("*") && splitedComand[2].equals("FROM")) {
+                        if (splitedComand[3].equalsIgnoreCase("countries")) {
 
-                        if (splitedComand.length > 6) {
+                            if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("population")) {
+
+                                if (splitedComand[6].equals("<")) {
+
+                                } else if (splitedComand[6].equals(">")) {
+
+                                } else {System.out.println("Command wrong written");}
+
+                            } else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("name")) {
+
+                                if (splitedComand[6].equals("=")) {
+
+                                    String cityNameSearched = splitedComand[7].substring(1,(splitedComand.length-1));
 
 
-
-                        } else {
-
-                            if (splitedComand.length > 3) {
-
-
-
-                            } else {
-
-
+                                } else {System.out.println("Command wrong written");}
 
                             }
+
+                        } else if (splitedComand[3].equalsIgnoreCase("cities")){
+
+                            if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("population")) {
+
+                                if (splitedComand[6].equals("<")) {
+
+                                } else if (splitedComand[6].equals(">")) {
+
+                                } else {System.out.println("Command wrong written");}
+
+                            } else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("name")) {
+
+                                String cityNameSearched = splitedComand[7].substring(1,(splitedComand.length-1));
+
+
+                            } else {System.out.println("Command wrong written");}
 
                         }
 
