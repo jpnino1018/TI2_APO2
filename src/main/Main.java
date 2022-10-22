@@ -47,15 +47,20 @@ public class Main {
 
                     String[] splitedComand = com.split(" ");
 
-                    if (splitedComand[0].equalsIgnoreCase("INSERT")) {
+                    if (splitedComand[0].equals("INSERT") && splitedComand[1].equals("INTO")) {
 
-                        if (splitedComand[2].equalsIgnoreCase("countries") {
+                        if (splitedComand[2].equalsIgnoreCase("countries(id, name, population, countryCode)") && splitedComand[3].equals("VALUES")) {
 
+                            String countryid = splitedComand[4].substring(2,41);
+                            String countryname = splitedComand[5].substring(1,(splitedComand[5].length()-1));
+                            try {
+                                double countrypop = Double.parseDouble(splitedComand[6].substring(0,(splitedComand[6].length()-1)));
+                            } catch (NumberFormatException ex) {ex.printStackTrace();}
+                            String countrycode = splitedComand[7].substring(1,(splitedComand[7].length()-1));
 
+                        } else if (splitedComand[2].equalsIgnoreCase("cities(id, name, countryID, population)") && splitedComand[3].equals("VALUES")){
 
-                        } else {
-
-
+                            String cityid = splitedComand[4].substring(2,41);
 
                         }
 
