@@ -4,10 +4,10 @@ public class Country {
 
     private String id;
     private String name;
-    private int population;
+    private double population;
     private String code;
 
-    public Country(String id, String name, int population, String code) {
+    public Country(String id, String name, double population, String code) {
         this.id = id;
         this.name = name;
         this.population = population;
@@ -30,11 +30,11 @@ public class Country {
         this.name = name;
     }
 
-    public int getPopulation() {
+    public double getPopulation() {
         return population;
     }
 
-    public void setPopulation(int population) {
+    public void setPopulation(double population) {
         this.population = population;
     }
 

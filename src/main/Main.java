@@ -32,31 +32,45 @@ public class Main {
         while (!fin) {
 
             System.out.println("Type an option \n" +
-                    "1. Insert Command" +
-                    "2. Import data from .SQL file" +
+                    "1. Insert Command \n" +
+                    "2. Import data from .SQL file \n" +
                     "3. Exit");
 
             optMenu = sc.nextInt();
+            sc.nextLine();
 
             switch (optMenu) {
 
                 case 1:
 
                     System.out.println("Type de command");
-                    com = sc.next();
+                    com = sc.nextLine();
 
                     String[] splitedComand = com.split(" ");
 
+                    for (String mostrar : splitedComand) {
+
+                        System.out.println(mostrar);
+
+                    }
+
                     if (splitedComand[0].equals("INSERT") && splitedComand[1].equals("INTO")) {
 
-                        if (splitedComand[2].equalsIgnoreCase("countries(id, name, population, countryCode)") && splitedComand[3].equals("VALUES")) {
+                        if (splitedComand[2].equalsIgnoreCase("countries(id,") && splitedComand[6].equals("VALUES")) {
 
-                            String countryid = splitedComand[4].substring(2,41);
-                            String countryname = splitedComand[5].substring(1,(splitedComand[5].length()-1));
+                            String countryid = splitedComand[7].substring(2,38);
+                            System.out.println("Contry id: " + countryid);
+                            String countryname = splitedComand[8].substring(1,(splitedComand[8].length()-2));
+                            System.out.println("Contry name: " + countryname);
+                            String countrycode = splitedComand[10].substring(1,(splitedComand[10].length()-2));
+                            System.out.println("Contry code: " + countrycode);
                             try {
-                                double countrypop = Double.parseDouble(splitedComand[6].substring(0,(splitedComand[6].length()-1)));
+                                double countrypop = Double.parseDouble(splitedComand[9].substring(0,(splitedComand[9].length()-1)));
+                                System.out.println("Contry population: " + countrypop);
+                                cn.addCountry(countryid, countryname, countrypop, countrycode);
+
                             } catch (NumberFormatException ex) {ex.printStackTrace();}
-                            String countrycode = splitedComand[7].substring(1,(splitedComand[7].length()-1));
+
 
                         } else if (splitedComand[2].equalsIgnoreCase("cities(id, name, countryID, population)") && splitedComand[3].equals("VALUES")){
 
@@ -68,7 +82,7 @@ public class Main {
 
                         if (splitedComand.length > 6) {
 
-                            if ()
+
 
                         } else {
 
