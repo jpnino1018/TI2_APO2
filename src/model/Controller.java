@@ -70,7 +70,7 @@ public class Controller {
 
         }
 
-        return "The country dont exist";
+        return "The city dont exist";
 
     }
 
@@ -143,11 +143,44 @@ public class Controller {
         }
 
         if (msg.equals("")){
-            msg = "there's not a country with that population";
+            msg = "there's not a city with that population";
         }
 
         return msg;
 
     }
+
+    public String printCountries () {
+
+        String countryList = "";
+
+        for (Country added : countries) {
+
+            countryList += added.toString();
+
+        }
+
+        if (countryList.equals("")){countryList = "No countries added yet";}
+
+        return countryList;
+
+    }
+
+    public String printCities () {
+
+        String cityList = "";
+
+        for (City added : cities) {
+
+            cityList += added.toString();
+
+        }
+
+        if (cityList.equals("")){cityList = "No cities added yet";}
+
+        return cityList;
+
+    }
+
 
 }
