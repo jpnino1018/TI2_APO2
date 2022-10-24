@@ -1,12 +1,20 @@
 package main;
 
+import com.google.gson.Gson;
 import model.Controller;
+import model.Reader;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class Main {
 
     public static Scanner sc;
     public static Controller cn;
+
     public static void main(String[] args) {
 
         init();
@@ -14,10 +22,13 @@ public class Main {
 
     }
 
-    public static void init  () {
+    public static void init() {
 
         sc = new Scanner(System.in);
         cn = new Controller();
+        Gson gson = new Gson();
+
+        Reader reader = new Reader();
 
     }
 
@@ -35,6 +46,7 @@ public class Main {
                     "1. Insert Command \n" +
                     "2. Import data from .SQL file \n" +
                     "3. Exit");
+
 
             optMenu = sc.nextInt();
             sc.nextLine();
@@ -154,7 +166,7 @@ public class Main {
 
                                         System.out.println(cn.searchCitybyPop(splitedComand[6], Double.parseDouble(splitedComand[7])));
 
-                                    }  else {
+                                    } else {
                                         throw new RuntimeException("Command wrong written");
                                     }
 
@@ -187,6 +199,7 @@ public class Main {
 
                 case 2:
 
+
                     break;
 
                 case 3:
@@ -204,5 +217,36 @@ public class Main {
 
         }
 
+    }
+
+    public static void readder() {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        String file = "";
+
+        try {
+
+            archivo = new File("/Users/juanfelipe/Desktop/prueba/hola");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+
+
+            String linea;
+            while ((linea = br.readLine()) != null)
+                System.out.println(linea);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
     }
 }
