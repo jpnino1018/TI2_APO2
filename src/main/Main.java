@@ -219,7 +219,7 @@ public class Main {
 
     }
 
-    public static void readder() {
+    public static void reader() {
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
