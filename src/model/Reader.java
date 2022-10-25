@@ -15,7 +15,7 @@ public class Reader {
 
         try {
 
-            archivo = new File (file);
+            archivo = new File ("DataBase.sql");
             fr = new FileReader (archivo);
             br = new BufferedReader(fr);
 
