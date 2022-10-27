@@ -1,5 +1,7 @@
 package model;
 
+import java.util.UUID;
+
 public class Country {
 
     private String id;
@@ -7,8 +9,8 @@ public class Country {
     private double population;
     private String code;
 
-    public Country(String id, String name, double population, String code) {
-        this.id = id;
+    public Country(String name, double population, String code) {
+        id = String.valueOf(UUID.randomUUID());
         this.name = name;
         this.population = population;
         this.code = code;
