@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Main {
 
@@ -145,6 +146,8 @@ public class Main {
     }
 
     public static void insertCommand(){
+        String uuid = String.valueOf(UUID.randomUUID());
+        System.out.println("*If you wish to insert a country/city, please use the following code as it's ID:\n" + uuid);
         String com;
         System.out.println("Type de command");
         com = sc.nextLine();
@@ -164,7 +167,6 @@ public class Main {
         try {
 
             if (splitedComand[0].equals("INSERT") && splitedComand[1].equals("INTO")) {
-
                 if (splitedComand[2].equalsIgnoreCase("countries(id,") && splitedComand[6].equals("VALUES")) {
 
                     String countryid = splitedComand[7].substring(2, 38);
@@ -192,9 +194,9 @@ public class Main {
                     String cityid = splitedComand[7].substring(2, 38);
                     System.out.println("City id: " + cityid);
                     String cityname = splitedComand[8].substring(1, (splitedComand[8].length() - 2));
-                    System.out.println("city name: " + cityname);
+                    System.out.println("City name: " + cityname);
                     String countrycode = splitedComand[9].substring(1, 37);
-                    System.out.println("Contry code: " + countrycode);
+                    System.out.println("Country code: " + countrycode);
                     if (!cn.searchCountryCode(countrycode)) {
                         throw new RuntimeException("That country dont exist");
                     }
@@ -235,7 +237,7 @@ public class Main {
                         if (splitedComand[6].equals("=")) {
 
                             String countryNameSearched = splitedComand[7].substring(1, (splitedComand[7].length() - 1));
-                            System.out.println("pais buscada: " + countryNameSearched);
+                            System.out.println("País buscado: " + countryNameSearched);
 
                             System.out.println(cn.searchCountryByName(countryNameSearched));
 

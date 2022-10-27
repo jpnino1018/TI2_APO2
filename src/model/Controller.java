@@ -16,13 +16,13 @@ public class Controller {
 
     public boolean addCity (String id, String name, double population, String countryCode) {
 
-        return cities.add(new City(name,population,countryCode));
+        return cities.add(new City(id, name,population,countryCode));
 
     }
 
     public boolean addCountry (String id, String name, double population, String code) {
 
-        return countries.add(new Country(name,population,code));
+        return countries.add(new Country(id,name,population,code));
 
     }
 
