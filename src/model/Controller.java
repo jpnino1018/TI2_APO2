@@ -16,7 +16,7 @@ public class Controller {
 
     public boolean addCity (String id, String name, double population, String countryCode) {
 
-        return cities.add(new City(id,name,population,countryCode));
+        return cities.add(new City(id, name,population,countryCode));
 
     }
 
