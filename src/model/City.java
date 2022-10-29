@@ -55,4 +55,9 @@ public class City {
                 ", countryCode='" + countryCode + '\'' +
                 '}';
     }
+
+    public String toString2(){
+
+        return "INSERT INTO cities(id, name, countryID, population) VALUES ('"+id+"', '"+name+"', '"+countryCode+"', "+population+")\n";
+    }
 }

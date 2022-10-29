@@ -173,7 +173,7 @@ public class Controller {
 
         for (City added : cities) {
 
-            cityList += added.toString();
+            cityList += added.toString2();
 
         }
 
@@ -182,6 +182,7 @@ public class Controller {
         return cityList;
 
     }
+
 
 
 }

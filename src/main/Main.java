@@ -15,8 +15,13 @@ public class Main {
     public static Controller cn;
 
     public static void main(String[] args) {
-
         init();
+        boolean flag = false;
+        if (flag == false){
+            initializationWithDataLoad();
+        }
+
+
         menu();
 
     }
@@ -32,6 +37,8 @@ public class Main {
     }
 
     public static void menu() {
+
+
 
         System.out.println("Welcome to the geographic information System!");
 
@@ -286,6 +293,27 @@ public class Main {
             ex.printStackTrace();
             System.out.println("Command wrong written");
 
+        }
+    }
+
+    public static void initializationWithDataLoad(){
+        int option = 0;
+        System.out.println("Do you want to start the program with a data base? If yes type (1) if not type (2) and you can continue");
+        option = sc.nextInt();
+
+
+
+        switch (option){
+            case 1:  reader();
+
+            break;
+
+            case 2: menu();
+
+            break;
+
+            case 0:
+                System.out.println("Type a valid option");
         }
     }
 
