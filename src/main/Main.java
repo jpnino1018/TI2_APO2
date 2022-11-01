@@ -1,7 +1,6 @@
 package main;
 import com.google.gson.Gson;
 import model.Controller;
-
 import javax.swing.JFileChooser;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,12 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         init();
-        boolean flag = false;
-        if (flag == false){
-            initializationWithDataLoad();
-        }
-
-
+        initializationWithDataLoad();
         menu();
 
     }
@@ -32,13 +26,9 @@ public class Main {
         cn = new Controller();
         Gson gson = new Gson();
 
-
-
     }
 
     public static void menu() {
-
-
 
         System.out.println("Welcome to the geographic information System!");
 
@@ -52,9 +42,7 @@ public class Main {
                     "2. Import data from .SQL file \n" +
                     "3. Exit");
 
-
             optMenu = sc.nextInt();
-
             sc.nextLine();
 
             switch (optMenu) {
@@ -64,7 +52,7 @@ public class Main {
                     break;
 
                 case 2:
-                reader();
+                    reader();
                     break;
 
                 case 3:
@@ -81,7 +69,7 @@ public class Main {
         }
 
     }
-    public static void readerCommand(String[] splitedComand) {
+    public static void insertCommand(String[] splitedComand) {
 
         for (String mostrar : splitedComand) {
 
@@ -153,23 +141,17 @@ public class Main {
     }
 
     public static void insertCommand(){
+
         String uuid = String.valueOf(UUID.randomUUID());
         System.out.println("*If you wish to insert a country/city, please use the following code as it's ID:\n" + uuid);
-        String com;
         System.out.println("Type de command");
-        com = sc.nextLine();
+        String com = sc.nextLine();
 
         String[] splitedComand = com.split(" ");
 
-        for (String mostrar : splitedComand) {
+        for (String mostrar : splitedComand) {System.out.println(mostrar);}
 
-            System.out.println(mostrar);
-
-        }
-
-        if (splitedComand.length < 4) {
-            throw new RuntimeException("Command wrong written");
-        }
+        if (splitedComand.length < 4) {throw new RuntimeException("Command wrong written");}
 
         try {
 
@@ -177,11 +159,8 @@ public class Main {
                 if (splitedComand[2].equalsIgnoreCase("countries(id,") && splitedComand[6].equals("VALUES")) {
 
                     String countryid = splitedComand[7].substring(2, 38);
-                    System.out.println("Contry id: " + countryid);
                     String countryname = splitedComand[8].substring(1, (splitedComand[8].length() - 2));
-                    System.out.println("Contry name: " + countryname);
                     String countrycode = splitedComand[10].substring(1, (splitedComand[10].length() - 2));
-                    System.out.println("Contry code: " + countrycode);
                     try {
                         double countrypop = Double.parseDouble(splitedComand[9].substring(0, (splitedComand[9].length() - 1)));
                         System.out.println("Contry population: " + countrypop);
@@ -199,26 +178,19 @@ public class Main {
                 } else if (splitedComand[2].equalsIgnoreCase("cities(id,") && splitedComand[6].equals("VALUES")) {
 
                     String cityid = splitedComand[7].substring(2, 38);
-                    System.out.println("City id: " + cityid);
                     String cityname = splitedComand[8].substring(1, (splitedComand[8].length() - 2));
-                    System.out.println("City name: " + cityname);
                     String countrycode = splitedComand[9].substring(1, 37);
-                    System.out.println("Country code: " + countrycode);
-                    if (!cn.searchCountryCode(countrycode)) {
-                        throw new RuntimeException("That country dont exist");
-                    }
+                    if (!cn.searchCountryCode(countrycode)) {throw new RuntimeException("That country dont exist");}
+
                     try {
                         double citypop = Double.parseDouble(splitedComand[10].substring(0, (splitedComand[10].length() - 1)));
-                        System.out.println("City population: " + citypop);
                         if (cn.addCity(cityid, cityname, citypop, countrycode)) {
                             System.out.println("the city was added");
                         } else {
                             System.out.println("the city wasn't added");
                         }
 
-                    } catch (NumberFormatException ex) {
-                        ex.printStackTrace();
-                    }
+                    } catch (NumberFormatException ex) {ex.printStackTrace();}
 
                 }
 
@@ -235,22 +207,17 @@ public class Main {
 
                             System.out.println(cn.searchCountrybyPop(splitedComand[6], Double.parseDouble(splitedComand[7])));
 
-                        } else {
-                            throw new RuntimeException("Command wrong written");
-                        }
+                        } else {throw new RuntimeException("Command wrong written");}
 
                     } else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("name")) {
 
                         if (splitedComand[6].equals("=")) {
 
                             String countryNameSearched = splitedComand[7].substring(1, (splitedComand[7].length() - 1));
-                            System.out.println("País buscado: " + countryNameSearched);
 
                             System.out.println(cn.searchCountryByName(countryNameSearched));
 
-                        } else {
-                            throw new RuntimeException("Command wrong written");
-                        }
+                        } else {throw new RuntimeException("Command wrong written");}
 
                     }
 
@@ -266,9 +233,7 @@ public class Main {
 
                             System.out.println(cn.searchCitybyPop(splitedComand[6], Double.parseDouble(splitedComand[7])));
 
-                        } else {
-                            throw new RuntimeException("Command wrong written");
-                        }
+                        } else {throw new RuntimeException("Command wrong written");}
 
                     } else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("name")) {
 
@@ -277,9 +242,7 @@ public class Main {
 
                         System.out.println(cn.searchCityByName(cityNameSearched));
 
-                    } else {
-                        throw new RuntimeException("Command wrong written");
-                    }
+                    } else {throw new RuntimeException("Command wrong written");}
 
                 }
 
@@ -300,8 +263,6 @@ public class Main {
         int option = 0;
         System.out.println("Do you want to start the program with a data base? If yes type (1) if not type (2) and you can continue");
         option = sc.nextInt();
-
-
 
         switch (option){
             case 1:  reader();
@@ -339,7 +300,7 @@ public class Main {
                 String com = linea;
                 splitedComand = com.split(" ");
                 System.out.println(linea);
-                readerCommand(splitedComand);
+                insertCommand(splitedComand);
 
             }
 

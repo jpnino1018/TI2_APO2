@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Controller {
 
@@ -183,6 +185,31 @@ public class Controller {
 
     }
 
+    public void orderCities (int param) {
 
+        if (param == 1) {
 
+            Collections.sort(cities, (a,b) ->{return a.getName().compareTo(b.getName());});
+
+        } else if (param == 2) {
+
+            Collections.sort(cities, (a,b) -> {return a.getPopulation().compareTo(b.getPopulation());});
+
+        }
+
+    }
+
+    public void orderCountries (int param) {
+
+        if (param == 1) {
+
+            Collections.sort(countries, (a,b) -> {return a.getName().compareTo(b.getName());});
+
+        } else if (param == 2) {
+
+            Collections.sort(countries, (a,b) -> {return a.getPopulation().compareTo(b.getPopulation());});
+
+        }
+
+    }
 }

@@ -30,7 +30,7 @@ public class Country {
         this.name = name;
     }
 
-    public double getPopulation() {
+    public Double getPopulation() {
         return population;
     }
 
