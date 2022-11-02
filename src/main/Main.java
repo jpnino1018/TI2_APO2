@@ -207,15 +207,11 @@ public class Main {
 
                             if (splitedComand[8].equals("ORDER") && splitedComand[9].equals("BY")) {
 
-                                if (splitedComand[10].equals("population")) {
+                                if (splitedComand[10].equals("population")) {System.out.println(cn.orderCountriesPop(Double.parseDouble(splitedComand[7]), splitedComand[6], 1));
 
-                                    System.out.println(cn.orderCountries("", Double.parseDouble(splitedComand[7]), splitedComand[6]));
+                                } else if (splitedComand[10].equals("name")) {System.out.println(cn.orderCountriesPop(Double.parseDouble(splitedComand[7]), splitedComand[6], 2));
 
-                                } else if (splitedComand[10].equals("name")) {
-
-                                    System.out.println(cn.orderCountries(splitedComand[7].substring(1,splitedComand[7].length()-1), Double.parseDouble(splitedComand[7]), splitedComand[6]));
-
-                                }
+                                }else {throw new RuntimeException("Command wrong written");};
 
                             } else {throw new RuntimeException("Command wrong written");};
 
@@ -230,7 +226,23 @@ public class Main {
 
                     } else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("name")) {
 
-                        if (splitedComand[6].equals("=")) {
+                        if (splitedComand.length > 8) {
+
+                            if (splitedComand[8].equals("ORDER") && splitedComand[9].equals("BY")) {
+
+                                if (splitedComand[10].equals("population")) {
+
+                                    System.out.println(cn.orderCountriesName(splitedComand[7].substring(1, splitedComand[7].length() - 1), 1));
+
+                                } else if (splitedComand[10].equals("name")) {
+
+                                    System.out.println(cn.orderCountriesName(splitedComand[7].substring(1, splitedComand[7].length() - 1), 2));
+
+                                }else {throw new RuntimeException("Command wrong written");}
+
+                            } else {throw new RuntimeException("Command wrong written");}
+
+                        } else if (splitedComand[6].equals("=")) {
 
                             String countryNameSearched = splitedComand[7].substring(1, (splitedComand[7].length() - 1));
 
@@ -242,25 +254,19 @@ public class Main {
 
                 } else if (splitedComand[3].equalsIgnoreCase("cities")) {
 
-                    if (splitedComand.length == 4) {
+                    if (splitedComand.length == 4) {System.out.println(cn.printCities());}
 
-                        System.out.println(cn.printCities());
-
-                    } else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("population")) {
+                    else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("population")) {
 
                         if (splitedComand.length > 8) {
 
                             if (splitedComand[8].equals("ORDER") && splitedComand[9].equals("BY")) {
 
-                                if (splitedComand[10].equals("population")) {
+                                if (splitedComand[10].equals("population")) {System.out.println(cn.orderCitiesPop(Double.parseDouble(splitedComand[7]), splitedComand[6], 1));
 
-                                    System.out.println(cn.orderCities("", Double.parseDouble(splitedComand[7]), splitedComand[6]));
+                                } else if (splitedComand[10].equals("name")) {System.out.println(cn.orderCitiesPop(Double.parseDouble(splitedComand[7]), splitedComand[6], 2));
 
-                                } else if (splitedComand[10].equals("name")) {
-
-                                    System.out.println(cn.orderCities(splitedComand[7].substring(1,splitedComand[7].length()-1), Double.parseDouble(splitedComand[7]), splitedComand[6]));
-
-                                }
+                                }else {throw new RuntimeException("Command wrong written");};
 
                             } else {throw new RuntimeException("Command wrong written");};
 
@@ -272,10 +278,29 @@ public class Main {
 
                     } else if (splitedComand[4].equals("WHERE") && splitedComand[5].equals("name")) {
 
-                        String cityNameSearched = splitedComand[7].substring(1, (splitedComand[7].length() - 1));
-                        System.out.println("ciudad buscada: " + cityNameSearched);
+                        if (splitedComand.length > 8) {
 
-                        System.out.println(cn.searchCityByName(cityNameSearched));
+                            if (splitedComand[8].equals("ORDER") && splitedComand[9].equals("BY")) {
+
+                                if (splitedComand[10].equals("population")) {
+
+                                    System.out.println(cn.orderCitiesName(splitedComand[7].substring(1, splitedComand[7].length() - 1), 1));
+
+                                } else if (splitedComand[10].equals("name")) {
+
+                                    System.out.println(cn.orderCitiesName(splitedComand[7].substring(1, splitedComand[7].length() - 1), 2));
+
+                                }else {throw new RuntimeException("Command wrong written");}
+
+                            } else {throw new RuntimeException("Command wrong written");}
+
+                        } else {
+                            String cityNameSearched = splitedComand[7].substring(1, (splitedComand[7].length() - 1));
+                            System.out.println("ciudad buscada: " + cityNameSearched);
+
+                            System.out.println(cn.searchCityByName(cityNameSearched));
+
+                        }
 
                     } else {throw new RuntimeException("Command wrong written");}
 

@@ -185,51 +185,48 @@ public class Controller {
 
     }
 
-    public String orderCities (String name, double pop, String cond) {
+    public String orderCitiesPop (double pop, String cond, int opt) {
 
         ArrayList<City> showCities = new ArrayList<City>();
 
-        if (!name.equals("")) {
-
+        if (cond.equals(">")) {
             for (int i = 0; i < cities.size(); i ++) {
-
-                if (cities.get(i).getName().equals(name)) {
+                if (cities.get(i).getPopulation() > pop) {
                     City addCity = cities.get(i);
                     showCities.add(addCity);
                 }
-
-                Collections.sort(showCities, (a,b) ->{return a.getName().compareTo(b.getName());});
-
             }
 
-        } else if (pop != 0.0) {
-
-            for (int i = 0; i < cities.size(); i ++) {
-
-                if (cond.equals(">")) {
-                    if (cities.get(i).getPopulation() > pop) {
-                        City addCity = cities.get(i);
-                        showCities.add(addCity);
-                    }
-
-                } else if (cond.equals("<")) {
-                    if (cities.get(i).getPopulation() < pop) {
-                        City addCity = cities.get(i);
-                        showCities.add(addCity);
-                    }
+        } else if (cond.equals("<")) {
+            for (int i = 0; i < cities.size(); i++) {
+                if (cities.get(i).getPopulation() < pop) {
+                    City addCity = cities.get(i);
+                    showCities.add(addCity);
                 }
-
-                Collections.sort(showCities, (a,b) ->{return a.getPopulation().compareTo(b.getPopulation());});
-
             }
-
         }
 
         String show = "";
 
-        for (int i = 0; i < showCities.size(); i ++ ) {
 
-            show += showCities.get(i).getName();
+        if (opt == 1) {
+
+            Collections.sort(showCities, (a, b) -> {
+                return a.getPopulation().compareTo(b.getPopulation());
+            });
+            for (int i = 0; i < showCities.size(); i ++ ) {
+
+                show += showCities.get(i).getName()+ "\n";
+
+            }
+        } else if (opt == 2) {
+
+            Collections.sort(showCities, (a,b) ->{return a.getName().compareTo(b.getName());});
+            for (int i = 0; i < showCities.size(); i ++ ) {
+
+                show += showCities.get(i).getName() + showCities.get(i).getPopulation() + "\n";
+
+            }
 
         }
 
@@ -237,53 +234,144 @@ public class Controller {
 
     }
 
-    public String orderCountries (String name, double pop, String cond) {
+    public String orderCitiesName (String name, int opt) {
 
-        ArrayList<Country> showCountries = new ArrayList<Country>();
+        ArrayList<City> showCities = new ArrayList<City>();
 
-        if (!name.equals("")) {
+        for (int i = 0; i < cities.size(); i ++) {
 
-            for (int i = 0; i < cities.size(); i ++) {
-
-                if (cities.get(i).getName().equals(name)) {
-                    Country addCountry = countries.get(i);
-                    showCountries.add(addCountry);
-                }
-
-                Collections.sort(showCountries, (a,b) ->{return a.getName().compareTo(b.getName());});
-
+            if (cities.get(i).getName().equals(name)) {
+                City addCity = cities.get(i);
+                showCities.add(addCity);
             }
 
-        } else if (pop != 0.0) {
-
-            for (int i = 0; i < cities.size(); i ++) {
-
-                if (cond.equals(">")) {
-                    if (cities.get(i).getPopulation() > pop) {
-                        Country addCountry = countries.get(i);
-                        showCountries.add(addCountry);
-                    }
-
-                } else if (cond.equals("<")) {
-                    if (cities.get(i).getPopulation() < pop) {
-                        Country addCountry = countries.get(i);
-                        showCountries.add(addCountry);
-                    }
-                }
-
-                Collections.sort(showCountries, (a,b) ->{return a.getPopulation().compareTo(b.getPopulation());});
-
-            }
 
         }
 
         String show = "";
 
-        for (int i = 0; i < showCountries.size(); i ++ ) {
+        if (opt == 1) {
 
-            show += showCountries.get(i).getName();
+            Collections.sort(showCities, (a,b) ->{return a.getName().compareTo(b.getName());});
+
+            for (int i = 0; i < showCities.size(); i ++ ) {
+
+                show += showCities.get(i).getName()+ "\n";
+
+            }
+
+        } else if (opt == 2) {
+
+            Collections.sort(showCities, (a, b) -> {
+                return a.getPopulation().compareTo(b.getPopulation());
+            });
+
+            for (int i = 0; i < showCities.size(); i ++ ) {
+
+                show += showCities.get(i).getName() + showCities.get(i).getPopulation() + "\n";
+
+            }
 
         }
+
+
+
+
+        return show;
+
+    }
+
+    public String orderCountriesPop (double pop, String cond, int opt) {
+
+        ArrayList<Country> showCountry = new ArrayList<Country>();
+
+        if (cond.equals(">")) {
+            for (int i = 0; i < countries.size(); i ++) {
+                if (countries.get(i).getPopulation() > pop) {
+                    Country addCountry = countries.get(i);
+                    showCountry.add(addCountry);
+                }
+            }
+
+        } else if (cond.equals("<")) {
+            for (int i = 0; i < countries.size(); i++) {
+                if (countries.get(i).getPopulation() < pop) {
+                    Country addCountry = countries.get(i);
+                    showCountry.add(addCountry);
+                }
+            }
+        }
+
+        String show = "";
+
+        if (opt == 1) {
+
+            Collections.sort(showCountry, (a, b) -> {
+                return a.getPopulation().compareTo(b.getPopulation());
+            });
+            for (int i = 0; i < showCountry.size(); i ++ ) {
+
+                show += showCountry.get(i).getName()+ "\n";
+
+            }
+        } else if (opt == 2) {
+
+            Collections.sort(showCountry, (a,b) ->{return a.getName().compareTo(b.getName());});
+
+            for (int i = 0; i < showCountry.size(); i ++ ) {
+
+                show += showCountry.get(i).getName() + showCountry.get(i).getPopulation() + "\n";
+
+            }
+        }
+
+        return show;
+
+    }
+
+    public String orderCountriesName (String name, int opt) {
+
+        ArrayList<Country> showCountry = new ArrayList<Country>();
+
+        for (int i = 0; i < countries.size(); i ++) {
+
+            if (countries.get(i).getName().equals(name)) {
+                Country addCountry = countries.get(i);
+                showCountry.add(addCountry);
+            }
+
+
+        }
+
+        String show = "";
+
+        if (opt == 1) {
+
+            Collections.sort(showCountry, (a,b) ->{return a.getName().compareTo(b.getName());});
+
+            for (int i = 0; i < showCountry.size(); i ++ ) {
+
+                show += showCountry.get(i).getName() + "\n";
+
+            }
+
+        } else if (opt == 2) {
+
+            Collections.sort(showCountry, (a, b) -> {
+                return a.getPopulation().compareTo(b.getPopulation());
+            });
+
+            for (int i = 0; i < showCountry.size(); i ++ ) {
+
+                show += showCountry.get(i).getName() + showCountry.get(i).getPopulation() + "\n";
+
+            }
+
+        }
+
+
+
+
 
         return show;
 
