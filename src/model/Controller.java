@@ -376,4 +376,35 @@ public class Controller {
         return show;
 
     }
+    public String write() {
+
+
+
+        String list = "";
+        for (Country added : countries) {
+
+            list += added.toString2();
+
+        }
+
+        if (list.equals("")) {
+            list = "No countries added yet";
+        }
+
+
+
+
+        for (City added : cities) {
+
+            list += added.toString2();
+
+        }
+
+        if (list.equals("")) {
+            list = "No cities added yet";
+        }
+
+        return list;
+
+    }
 }

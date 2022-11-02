@@ -2,9 +2,7 @@ package main;
 import com.google.gson.Gson;
 import model.Controller;
 import javax.swing.JFileChooser;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -15,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         init();
-        initializationWithDataLoad();
+
         menu();
 
     }
@@ -40,7 +38,8 @@ public class Main {
             System.out.println("Type an option \n" +
                     "1. Insert Command \n" +
                     "2. Import data from .SQL file \n" +
-                    "3. Exit");
+                    "3. Save data as a .SQL file \n" +
+                    "4. Exit");
 
             optMenu = sc.nextInt();
             sc.nextLine();
@@ -54,8 +53,10 @@ public class Main {
                 case 2:
                     reader();
                     break;
-
                 case 3:
+                    writter(cn.write());
+                    break;
+                case 4:
                     System.out.println("Thanks for using");
                     fin = true;
                     break;
@@ -376,6 +377,17 @@ public class Main {
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
+        }
+    }
+    public static void writter(String db) {
+        JFileChooser buscador = new JFileChooser();
+        int selection = buscador.showSaveDialog(buscador);
+
+        try (FileWriter fl = new FileWriter("Database.sql")) {
+            fl.write(db);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
