@@ -9,11 +9,11 @@ public class Controller {
     ArrayList<Country> countries;
     ArrayList<City> cities;
 
+
     public Controller () {
 
         this.cities = new ArrayList<City>();
         this.countries = new ArrayList<Country>();
-
     }
 
     public boolean addCity (String id, String name, double population, String countryCode) {
@@ -407,4 +407,128 @@ public class Controller {
         return list;
 
     }
+
+    public String deleteCountryByName(String name){
+        String msg = "";
+        for (int i = 0; i < countries.size(); i++) {
+            if (countries.get(i).getName().equals(name)) {
+                countries.remove(countries.get(i));
+                msg = "Country has been removed";
+            }
+        }
+        if (msg.equals("")){
+            msg = "No country fulfills parameter";
+        }
+        return msg;
+    }
+
+    public String deleteCityByName(String name){
+        String msg = "";
+        for (int i = 0; i < cities.size(); i++) {
+
+            if (cities.get(i).getName().equals(name)) {
+                cities.remove(cities.get(i));
+                msg = "City has been removed";
+
+            }
+        }
+        if (msg.equals("")){
+            msg = "No city fulfills parameter";
+        }
+        return msg;
+    }
+
+    public String deleteCountryByPop(String comp, int pop){
+        String msg = "";
+
+        if (comp.equals("=")){
+            for (int i = 0; i < countries.size(); i++) {
+                if (countries.get(i).getPopulation() == pop){
+                    countries.remove(countries.get(i));
+                    msg = "Delete successful";
+                }
+            }
+        }
+
+        if (comp.equals("<")){
+            for (int i = 0; i < countries.size(); i++) {
+                if (countries.get(i).getPopulation() < pop) {
+                    countries.remove(countries.get(i));
+                    msg = "Delete successful";
+                }
+            }
+        }
+
+        if (comp.equals(">")){
+            for (int i = 0; i < countries.size(); i++) {
+                if (countries.get(i).getPopulation() > pop){
+                    countries.remove(countries.get(i));
+                    msg = "Delete successful";
+                }
+            }
+        }
+        if (msg.equals("")){
+            msg = "No country fulfills parameter";
+        }
+        return msg;
+    }
+
+    public String deleteCityByPop(String comp, int pop){
+        String msg = "";
+
+        if (comp.equals("=")){
+            for (int i = 0; i < cities.size(); i++) {
+                if (cities.get(i).getPopulation() == pop){
+                    cities.remove(cities.get(i));
+                    msg = "Delete successful";
+                }
+            }
+        }
+
+        if (comp.equals("<")){
+            for (int i = 0; i < cities.size(); i++) {
+                if (cities.get(i).getPopulation() < pop) {
+                    cities.remove(cities.get(i));
+                    msg = "Delete successful";
+                }
+            }
+        }
+
+        if (comp.equals(">")){
+            for (int i = 0; i < cities.size(); i++) {
+                if (cities.get(i).getPopulation() > pop){
+                    cities.remove(cities.get(i));
+                    msg = "Delete successful";
+                }
+            }
+        }
+        if (msg.equals("")){
+            msg = "No city fulfills parameter";
+        }
+        return msg;
+    }
+
+    public String deleteCityByCountryName(String name){
+        String countryCode = "";
+        String msg = "";
+        for (int i = 0; i < countries.size(); i++) {
+            if (countries.get(i).getName().equals(name)){
+                countryCode=countries.get(i).getCode();
+            }
+        }
+
+        for (int i = 0; i < cities.size(); i++) {
+            if (cities.get(i).getCountryCode().equals(countryCode)){
+                cities.remove(cities.get(i));
+                msg = "Delete successful";
+
+            }
+        }
+        if (msg.equals("")){
+            msg = "Country not found";
+        }
+
+        return msg;
+    }
+
 }

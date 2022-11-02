@@ -145,7 +145,7 @@ public class Main {
 
         String uuid = String.valueOf(UUID.randomUUID());
         System.out.println("*If you wish to insert a country/city, please use the following code as it's ID:\n" + uuid);
-        System.out.println("Type de command");
+        System.out.println("Type the command");
         String com = sc.nextLine();
 
         String[] splitedComand = com.split(" ");
@@ -307,9 +307,25 @@ public class Main {
 
                 }
 
-            } else if (splitedComand[0].equalsIgnoreCase("DELETE")) {
+            } else if (splitedComand[0].equalsIgnoreCase("DELETE") && splitedComand[1].equalsIgnoreCase("FROM")) {
 
+                if (splitedComand[2].equalsIgnoreCase("countries") && splitedComand[3].equalsIgnoreCase("WHERE")){
+                    if (splitedComand[4].equalsIgnoreCase("population")){
+                        System.out.println(cn.deleteCountryByPop(splitedComand[5], Integer.parseInt(splitedComand[6])));
+                    } else if (splitedComand[4].equalsIgnoreCase("name") && splitedComand[5].equalsIgnoreCase("=")){
+                        System.out.println(cn.deleteCountryByName(splitedComand[6]));
+                    }else {throw new RuntimeException("Command wrong written");}
 
+                } else if (splitedComand[2].equalsIgnoreCase("cities") && splitedComand[3].equalsIgnoreCase("WHERE")) {
+                    if (splitedComand[4].equalsIgnoreCase("population")){
+                        System.out.println(cn.deleteCityByPop(splitedComand[5], Integer.parseInt(splitedComand[6])));
+                    } else if (splitedComand[4].equalsIgnoreCase("name") && splitedComand[5].equalsIgnoreCase("=")){
+                        System.out.println(cn.deleteCityByName(splitedComand[6]));
+                    } else if (splitedComand[4].equalsIgnoreCase("country") && splitedComand[5].equalsIgnoreCase("=")) {
+                        System.out.println(cn.deleteCityByCountryName(splitedComand[6]));
+                    }else {throw new RuntimeException("Command wrong written");}
+
+                } else {throw new RuntimeException("Command wrong written");}
             }
 
         } catch (IndexOutOfBoundsException ex) {
